@@ -5,6 +5,20 @@
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "304378684dfcf5be73bbd14faffa71790793d8c6"
-  }
+    "commit": "304378684dfcf5be73bbd14faffa71790793d8c6",
+    "rtl_path": "rtl",
+    "rtl_files": [
+      "rtl/mbx.sv",
+      "rtl/mbx_core_reg_top.sv",
+      "rtl/mbx_fsm.sv",
+      "rtl/mbx_hostif.sv",
+      "rtl/mbx_imbx.sv",
+      "rtl/mbx_ombx.sv",
+      "rtl/mbx_reg_pkg.sv",
+      "rtl/mbx_soc_reg_top.sv",
+      "rtl/mbx_sramrwarb.sv",
+      "rtl/mbx_sysif.sv"
+    ]
+  },
+  "updated": "2026-02-19T06:03:45Z"
 }
