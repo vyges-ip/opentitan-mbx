@@ -3,24 +3,56 @@
   "x-version": "1.0.0",
   "name": "opentitan-mbx",
   "version": "0.1.0",
-  "description": "Mailbox controller for inter-processor communication with configurable FIFO depth, doorbell interrupts, and TileLink-UL slave interface. Extracted from OpenTitan (lowRISC).",
+  "description": "IP imported from https://github.com/lowRISC/opentitan",
   "license": "Apache-2.0",
-  "maturity": "production",
-  "target": ["asic", "fpga"],
-  "design_type": ["digital"],
-  "created": "2026-02-19T06:12:02Z",
-  "updated": "2026-03-27T19:35:00Z",
-  "source": {"type": "git", "url": "https://github.com/lowRISC/opentitan", "private": false, "rtl_path": "rtl"},
-  "maintainers": [{"name": "Vyges", "email": "team@vyges.com", "github": "vyges"}],
-  "interfaces": [{"type": "bus", "direction": "slave", "protocol": "TL-UL", "port": "tl", "width": 32}],
-  "architecture": {"type": "peripheral", "features": ["Inter-processor communication mailbox", "Configurable FIFO depth", "Doorbell interrupt mechanism", "10 RTL files, 4,087 lines"]},
-  "dependencies": [{"name": "opentitan-prim", "type": "library"}, {"name": "opentitan-tlul", "type": "bus"}],
-  "documentation": {"upstream": "https://opentitan.org/book/hw/ip/mbx/"},
-  "artifacts": {"total_rtl_lines": 4087},
-  "categories": {"primary": "peripheral", "secondary": ["communication", "infrastructure"], "tags": ["mbx", "mailbox", "ipc", "inter-processor", "opentitan", "tl-ul"]},
-  "trust": {"verification_level": "silicon_proven", "tapeout_count": 3, "maintained": true, "last_activity": "2026-03-27"},
-  "asic": {"flavor": "digital", "technology": ["sky130A"]},
-  "fpga": {"toolchain": ["Vivado", "Yosys"]},
-  "keywords": ["mbx", "opentitan", "tl-ul"],
-  "meta": {"template": {"generator": "manual (gold-standard pass 2026-03-27)"}, "schema": {"version": "1.0.0"}}
+  "maturity": "draft",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:26Z",
+  "updated": "2026-03-27T23:05:26Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "private": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [],
+  "parameters": [],
+  "architecture": {
+    "type": "peripheral",
+    "features": []
+  },
+  "categories": [
+    {
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
+    }
+  ],
+  "trust": {
+    "verification_level": "unknown",
+    "maintained": true
+  },
+  "_note": "AI enrichment failed. Manual population needed.",
+  "meta": {
+    "template": {
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-03-27T23:05:26Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
 }
