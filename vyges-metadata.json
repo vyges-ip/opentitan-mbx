@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "opentitan-mbx",
   "version": "0.1.0",
-  "description": "IP imported from https://github.com/lowRISC/opentitan",
+  "description": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integrity checks, and includes features for error handling and secure register access.",
   "license": "Apache-2.0",
-  "maturity": "draft",
+  "maturity": "production",
   "target": [
     "asic",
     "fpga"
@@ -13,43 +13,211 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:26Z",
-  "updated": "2026-03-27T23:05:26Z",
+  "created": "2026-03-27T23:11:00Z",
+  "updated": "2026-03-27T23:11:00Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "e34333f9b38b01f5c07ef1177ca08408effe7653",
+    "ip_path": "hw/ip/mbx",
     "private": false,
+    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
+      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [],
-  "parameters": [],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "Incoming TL-UL bus interface for communication."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "Outgoing TL-UL bus interface for communication."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "port": "reg2hw",
+      "width": 1,
+      "description": "Output interface for hardware register writes."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "port": "hw2reg",
+      "width": 1,
+      "description": "Input interface for hardware register reads."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "port": "racl_policies_i",
+      "width": 1,
+      "description": "Input for RACL policy vector."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "port": "racl_error_o",
+      "width": 1,
+      "description": "Output for RACL error log."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Output for integrity check errors."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable or disable RACL functionality."
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable RACL error response."
+    },
+    {
+      "name": "RaclPolicySelVec",
+      "type": "enum",
+      "default": "{mbx_reg_pkg::NumRegsCore{0}}",
+      "description": "RACL policy selection vector."
+    }
+  ],
+  "performance": {},
   "architecture": {
     "type": "peripheral",
-    "features": []
+    "features": [
+      "Mailbox communication between hardware and software",
+      "TL-UL protocol support",
+      "Integrity check and error handling",
+      "RACL policy enforcement"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Uncached Lightweight (TL-UL) protocol package."
+    },
+    {
+      "name": "mbx_reg_pkg",
+      "type": "library",
+      "description": "Mailbox register package containing data structures and parameters."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertions for design verification."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive module for write enable checking."
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink adapter for register interface."
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "core",
+      "description": "TileLink command integrity checker."
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TileLink response integrity generator."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 4087
   },
   "categories": [
     {
-      "main_category": "Miscellaneous",
-      "sub_category": "Custom Accelerators"
+      "main_category": "Security IP",
+      "sub_category": "Secure Boot Blocks"
     }
   ],
+  "keywords": [
+    "OpenTitan",
+    "Mailbox",
+    "TL-UL",
+    "RACL",
+    "Integrity Check",
+    "Secure Communication"
+  ],
   "trust": {
-    "verification_level": "unknown",
-    "maintained": true
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:11:00Z"
   },
-  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "upstream-sync-fallback",
-      "generated_at": "2026-03-27T23:05:26Z"
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:11:00Z"
     },
     "schema": {
       "version": "1.0.0"
